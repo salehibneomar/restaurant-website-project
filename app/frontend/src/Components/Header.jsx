@@ -1,11 +1,19 @@
-import React, { useContext } from 'react'
-import SiteInformationsContext from '../Contexts/SiteInformationsContext'
+import React, { useContext, useEffect } from 'react'
 import HeaderLogo from './HeaderLogo'
 import HeaderNav from './HeaderNav'
+import SiteInformationsContext from '../Contexts/SiteInformationsContext'
 
 function Header() {
 
-  const {siteInformations: {banner_url, icon_url, name}, loading} = useContext(SiteInformationsContext)
+  const {siteInformations : {icon_url, name},
+         getSiteInformations,
+        } = useContext(SiteInformationsContext)
+  
+  useEffect(()=>{
+    getSiteInformations().then((d)=>document.title = d.name)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])     
+
 
   return (
     <div className="placeholder">

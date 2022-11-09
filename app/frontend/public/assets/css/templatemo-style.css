@@ -313,6 +313,7 @@ p, address {
   color: white;
   text-decoration: none;
   padding-bottom: 10px;
+  font-weight: 700;
 }
 
 .tm-nav-link.active,
