@@ -1,9 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
+import SiteInformationsContext from '../Contexts/SiteInformationsContext'
+import ContactContext from '../Contexts/ContactContext'
+import { Link } from 'react-router-dom'
+import parse from 'html-react-parser'
 
 function Contact() {
 
+    const {getSiteInformations,
+    siteInformations : {address,phone,email}} 
+    = useContext(SiteInformationsContext)
+    
+    const {getSocialMedia, socialMedia, loading} = useContext(ContactContext) 
+
     useEffect(()=>{
-        document.title = "Contact"
+        getSiteInformations().then((d)=>document.title = "Contact | "+d.name)
+        getSocialMedia()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
   return (
@@ -17,21 +29,29 @@ function Contact() {
             <div className="row">
                 <div className="contact-fix">
                     <div className="tm-address-box">
-                        <h4 className="tm-info-title tm-text-success">Our Address</h4>
-                        <address>
-                            180 Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus 10550
+                        <h4 className="tm-info-title tm-text-success">
+                            Our Address
+                        </h4>
+                        {loading ? 'Loading...' : (<>                        <address>
+                            {address}
                         </address>
-                        <a href="tel:080-090-0110" className="tm-contact-link">
-                            <i className="fas fa-phone tm-contact-icon"></i>080-090-0110
-                        </a>
-                        <a href="mailto:info@company.co" className="tm-contact-link">
-                            <i className="fas fa-envelope tm-contact-icon"></i>info@company.co
-                        </a>
+                        <Link to={`tel:${phone}`} className="tm-contact-link">
+                            <i className="fas fa-phone tm-contact-icon">
+                            </i>{phone}
+                        </Link>
+                        <Link to={`mailto:${email}`} className="tm-contact-link">
+                            <i className="fas fa-envelope tm-contact-icon"></i>
+                            {email}
+                        </Link>
                         <div className="tm-contact-social">
-                            <a href="https://fb.com/templatemo" className="tm-social-link"><i className="fab fa-facebook tm-social-icon"></i></a>
-                            <a href="#" className="tm-social-link"><i className="fab fa-twitter tm-social-icon"></i></a>
-                            <a href="#" className="tm-social-link"><i className="fab fa-instagram tm-social-icon"></i></a>
-                        </div>
+                            {socialMedia.map((data, index)=>{
+                                return (
+                                <Link className="tm-social-link" key={index}>
+                                    {parse(data.icon)}
+                                </Link>
+                                )
+                            })}
+                        </div></>)}
                     </div>
                 </div>
             </div>

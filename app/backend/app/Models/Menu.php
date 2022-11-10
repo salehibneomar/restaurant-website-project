@@ -26,8 +26,6 @@ class Menu extends Model
 
     protected $hidden = [
         'image',
-        'ingredients',
-        'description',
         'status',
         'type_id',
         'user_id',

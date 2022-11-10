@@ -8,3 +8,4 @@ export const AXIOS = axios.create({
     }
 })
 
+export default AXIOS

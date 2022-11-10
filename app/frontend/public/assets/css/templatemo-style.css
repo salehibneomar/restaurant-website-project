@@ -209,8 +209,11 @@ p, address {
 /* Set width and height in JS */
 .placeholder {
   width: 100%;
-  min-height: 460px;
+  max-height: 460px;
   background-color: #556E5B;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .placeholder-2 {
@@ -403,6 +406,7 @@ p, address {
   font-weight: 400;
   color: #1A6692;
   margin-bottom: 15px;
+  text-decoration: none !important;
 }
 
 .tm-gallery-description {
@@ -410,7 +414,7 @@ p, address {
 }
 
 .tm-gallery-price {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #2F956D;
   margin-bottom: 60px;
 }

@@ -1,5 +1,5 @@
 import { useState, createContext } from "react";
-import {AXIOS} from '../AxiosSetup'
+import AXIOS from '../AxiosSetup'
 
 const SiteInformationsContext = createContext()
 
