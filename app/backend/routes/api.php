@@ -10,3 +10,4 @@ Route::get('/site/informations', [SiteInformationController::class, 'index']);
 Route::get('/contact/socials', [ContactPageController::class, 'index']);
 Route::get('/home/menu/types', [HomePageMenuTypesController::class, 'index']);
 Route::get('/home/{type}/{type_id}/menus', [HomePageMenuItemsController::class, 'index']);
+Route::get('/menu/items/{id}', [HomePageMenuItemsController::class, 'show']);

@@ -5,15 +5,9 @@ import SiteInformationsContext from '../Contexts/SiteInformationsContext'
 
 function Home() {
 
-  const {getSiteInformations,
-        loading,
+  const {loading,
         siteInformations : {about}} 
         = useContext(SiteInformationsContext)
-
-  useEffect(()=>{
-    getSiteInformations().then((d)=>document.title = "Home | "+d.name)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <>

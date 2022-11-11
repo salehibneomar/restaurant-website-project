@@ -9,7 +9,8 @@ export const MenuContextProvider = ({children})=>{
     const [selectedMenu, setSelectedMenu] = useState({})
     const [menuItems, setMenuItems] = useState([])
     const [menuLoading, setMenuLoading] = useState(false)
-
+    const [singleMenuItem, setSingleMenuItem] = useState({})
+    
     const getMenuTypes = async ()=>{
         setLoading(true)
         const url = 'home/menu/types'
@@ -30,6 +31,16 @@ export const MenuContextProvider = ({children})=>{
         return data
     }
 
+    const getSingleMenuItem = async (id)=>{
+        setLoading(true)
+        const url = `menu/items/${id}`
+        const res = await AXIOS.get(url)
+        const data = await res.data
+        setSingleMenuItem(data)
+        setLoading(false)
+        return data
+    }
+
     return (
         <MenuContext.Provider value={{
             menuTypes,
@@ -37,11 +48,11 @@ export const MenuContextProvider = ({children})=>{
             menuItems,
             loading,
             menuLoading,
+            singleMenuItem,
             getMenuTypes,
             setSelectedMenu,
             getMenuItems,
-            setMenuItems,
-            
+            getSingleMenuItem
         }}>
             {children}
         </MenuContext.Provider>

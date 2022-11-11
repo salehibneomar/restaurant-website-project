@@ -24,4 +24,12 @@ class HomePageMenuItemsController extends ApiResponserController
         return $this->showAllResponse($items);
     }
 
+    public function show($id){
+        $item = Menu::with('type')
+                    ->where('status',1)
+                    ->where('id', $id)
+                    ->firstOrFail();
+        return $this->showSingleResponse($item);
+    }
+
 }

@@ -6,14 +6,12 @@ import parse from 'html-react-parser'
 
 function Contact() {
 
-    const {getSiteInformations,
-    siteInformations : {address,phone,email}} 
+    const {siteInformations : {address,phone,email}} 
     = useContext(SiteInformationsContext)
     
     const {getSocialMedia, socialMedia, loading} = useContext(ContactContext) 
 
     useEffect(()=>{
-        getSiteInformations().then((d)=>document.title = "Contact | "+d.name)
         getSocialMedia()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -35,20 +33,20 @@ function Contact() {
                         {loading ? 'Loading...' : (<>                        <address>
                             {address}
                         </address>
-                        <Link to={`tel:${phone}`} className="tm-contact-link">
+                        <a href={`tel:${phone}`} className="tm-contact-link">
                             <i className="fas fa-phone tm-contact-icon">
                             </i>{phone}
-                        </Link>
-                        <Link to={`mailto:${email}`} className="tm-contact-link">
+                        </a>
+                        <a href={`mailto:${email}`} className="tm-contact-link">
                             <i className="fas fa-envelope tm-contact-icon"></i>
                             {email}
-                        </Link>
+                        </a>
                         <div className="tm-contact-social">
                             {socialMedia.map((data, index)=>{
                                 return (
-                                <Link className="tm-social-link" key={index}>
+                                <a href={data.url} target="blank" className="tm-social-link" key={index}>
                                     {parse(data.icon)}
-                                </Link>
+                                </a>
                                 )
                             })}
                         </div></>)}

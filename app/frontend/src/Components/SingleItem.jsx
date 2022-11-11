@@ -8,7 +8,7 @@ function SingleItem({item}) {
 			<figure>
 				<img src={item.image_url} alt="" className="img-fluid tm-gallery-img" />
 				<figcaption>
-					<Link to={`menu/items/${item.id}`} className="tm-gallery-title">
+					<Link to={`/menu/items/${item.id}`} className="tm-gallery-title">
 						{item.name}
 					</Link>
 					<p className="tm-gallery-price">
